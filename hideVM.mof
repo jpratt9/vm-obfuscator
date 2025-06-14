@@ -1,0 +1,51 @@
+#pragma namespace ("\\\\.\\root\\CIMv2")
+
+/* 
+    Run with:
+    mofcomp .\hideVM.mof
+    
+    Managed Object Format (MOF)
+    https://docs.microsoft.com/en-us/windows/win32/wmisdk/managed-object-format--mof-
+*/
+
+/* PS C:> get-wmiobject -class Win32_BIOS */
+class Win32_BIOS
+{
+    [key] string SMBIOSBIOSVersion;
+	string Manufacturer;
+	string SerialNumber;
+	string Name;
+	uint16 BiosCharacteristics[];
+	string Version;
+};
+
+[DYNPROPS]
+instance of Win32_BIOS
+{
+    SMBIOSBIOSVersion = "6.0";
+	Manufacturer = "Microsoft";
+	SerialNumber = "a1 7b 88 e5 6c 44 73 8e-24 16 1d e6 69 59 83 a1";
+	Name = "MicrosoftBIOS 5.0 Release 6.0";
+	BiosCharacteristics = {1,2,3};
+	Version = "Microsoft - 6040001";
+};
+
+/* PS C:> get-wmiobject -class Win32_ComputerSystem */
+class Win32_ComputerSystem
+{
+	[key] string Name;
+	string Domain;
+	string Manufacturer;
+	string Model;
+	string OEMStringArray[];
+};
+
+[DYNPROPS]
+instance of Win32_ComputerSystem
+{
+    Name = "IE11WIN8_1";
+	Domain = "WORKGROUP";
+	Manufacturer = "XBox";
+	Model = "XBox Platform";
+	OEMStringArray = {"Microsoft OEM"};
+};
